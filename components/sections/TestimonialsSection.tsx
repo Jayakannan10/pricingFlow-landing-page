@@ -90,7 +90,7 @@ export default function TestimonialsSection() {
           "transition-all duration-1000 transform",
           isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         )}>
-          <div className="relative max-w-4xl mx-auto">
+          <div className="relative mx-auto max-w-4xl overflow-hidden px-4 md:px-0">
             <div className="flex overflow-hidden">
               {testimonials.map((testimonial, index) => (
                 <div 
@@ -160,24 +160,24 @@ export default function TestimonialsSection() {
               ))}
             </div>
             
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0">
-              <div className="flex justify-between">
-                <button
-                  onClick={prevTestimonial}
-                  className="bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors -translate-x-1/2 hidden md:block"
-                  aria-label="Previous testimonial"
-                >
-                  <ChevronLeft className="h-6 w-6 text-gray-600" />
-                </button>
-                <button
-                  onClick={nextTestimonial}
-                  className="bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors translate-x-1/2 hidden md:block"
-                  aria-label="Next testimonial"
-                >
-                  <ChevronRight className="h-6 w-6 text-gray-600" />
-                </button>
-              </div>
-            </div>
+            <div className="absolute top-1/2 -translate-y-1/2 left-[5px] right-[5px]">
+  <div className="flex justify-between">
+    <button
+      onClick={prevTestimonial}
+      className="bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors -translate-x-1/2 md:block z-10" // Added z-10
+      aria-label="Previous testimonial"
+    >
+      <ChevronLeft className="h-6 w-6 text-gray-600" />
+    </button>
+    <button
+      onClick={nextTestimonial}
+      className="bg-white rounded-full p-2 shadow-md hover:bg-gray-50 transition-colors translate-x-1/2 md:block z-10" // Added z-10
+      aria-label="Next testimonial"
+    >
+      <ChevronRight className="h-6 w-6 text-gray-600" />
+    </button>
+  </div>
+</div>
           </div>
         </div>
       </div>
