@@ -26,6 +26,22 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Only prevent default if it's a hash link to ensure smooth scrolling
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // Close mobile menu if open
+      if (mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    }
+  };
+
   return (
     <header 
       className={cn(
@@ -48,6 +64,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className="text-gray-600 hover:text-[rgb(0,112,100)] font-medium transition-colors"
+                onClick={(e) => handleNavClick(e, item.href)}
               >
                 {item.name}
               </Link>
@@ -64,6 +81,7 @@ export default function Navbar() {
             <Link 
               href="#contact" 
               className="px-4 py-2 bg-[rgb(0,112,100)] text-white rounded-md font-medium hover:bg-[rgb(0,92,82)] transition-colors duration-200"
+              onClick={(e) => handleNavClick(e, "#contact")}
             >
               Get Started
             </Link>
@@ -88,7 +106,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className="block px-3 py-2 text-gray-600 hover:text-[rgb(0,112,100)] font-medium"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, item.href)}
               >
                 {item.name}
               </Link>
@@ -97,14 +115,14 @@ export default function Navbar() {
               <Link 
                 href="#contact" 
                 className="px-4 py-2 text-center text-[rgb(0,112,100)] font-medium border border-[rgb(0,112,100)] rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, "#contact")}
               >
                 Sign In
               </Link>
               <Link 
                 href="#contact" 
                 className="px-4 py-2 text-center bg-[rgb(0,112,100)] text-white rounded-md font-medium"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, "#contact")}
               >
                 Get Started
               </Link>
