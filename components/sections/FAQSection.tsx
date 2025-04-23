@@ -3,43 +3,18 @@
 import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const faqs = [
-  {
-    question: "How does PricingFlows help optimize pricing?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  },
-  {
-    question: "Can I integrate PricingFlows with my existing systems?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  },
-  {
-    question: "Is PricingFlows suitable for my industry?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  },
-  {
-    question: "How long does it take to implement PricingFlows?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  },
-  {
-    question: "What kind of support do you provide?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  },
-  {
-    question: "Do you offer a free trial?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  }
-];
+import { useTranslation } from 'react-i18next';
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+  const { t } = useTranslation('common');
+
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-  
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -62,15 +37,38 @@ export default function FAQSection() {
     };
   }, []);
 
+  const faqs = [
+    {
+      question: t('faq.items.0.question'),
+      answer: t('faq.items.0.answer')
+    },
+    {
+      question: t('faq.items.1.question'),
+      answer: t('faq.items.1.answer')
+    },
+    {
+      question: t('faq.items.2.question'),
+      answer: t('faq.items.2.answer')
+    },
+    {
+      question: t('faq.items.3.question'),
+      answer: t('faq.items.3.answer')
+    },
+    {
+      question: t('faq.items.4.question'),
+      answer: t('faq.items.4.answer')
+    }
+  ];
+
   return (
-    <section id="faq" className="py-20 bg-white" ref={sectionRef}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[rgb(0,112,100)]">
-            Frequently Asked Questions
+    <section id="faq" className="py-16 px-4 sm:py-20 bg-gray-50 w-full" ref={sectionRef}>
+      <div className="max-w-4xl mx-auto sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[rgb(0,112,100)]">
+            {t('faq.title')}
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
+          <p className="mt-4 text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            {t('faq.description')}
           </p>
         </div>
         
@@ -88,7 +86,7 @@ export default function FAQSection() {
                 className="flex justify-between items-center w-full p-6 text-left focus:outline-none"
                 onClick={() => toggleFAQ(index)}
               >
-                <span className="text-lg font-semibold text-gray-900">{faq.question}</span>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900">{faq.question}</h3>
                 <ChevronDown 
                   className={cn(
                     "h-5 w-5 text-gray-500 transition-transform duration-300",

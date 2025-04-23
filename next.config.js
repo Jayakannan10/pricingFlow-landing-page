@@ -1,10 +1,13 @@
+const { i18n } = require('./next-i18next.config');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // output: 'export' is removed
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
+  i18n,
 };
 
 module.exports = nextConfig;

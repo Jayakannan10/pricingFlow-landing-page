@@ -55,12 +55,12 @@ export default function Navbar() {
           </nav>
           
           <div className="hidden md:flex items-center space-x-4">
-            <Link 
+            {/* <Link 
               href="#contact" 
               className="px-4 py-2 text-[rgb(0,112,100)] font-medium"
             >
               Sign In
-            </Link>
+            </Link> */}
             <Link 
               href="#contact" 
               className="px-4 py-2 bg-[rgb(0,112,100)] text-white rounded-md font-medium hover:bg-[rgb(0,92,82)] transition-colors duration-200"

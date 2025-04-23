@@ -1,91 +1,79 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { AreaChart, BarChart, Layout, Zap, ShieldCheck, PieChart } from "lucide-react";
+import { useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-
-const features = [
-  {
-    icon: AreaChart,
-    title: "Dynamic Pricing Analysis",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  },
-  {
-    icon: PieChart,
-    title: "Market Segmentation",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  },
-  {
-    icon: Zap,
-    title: "Real-time Optimization",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  },
-  {
-    icon: Layout,
-    title: "Customizable Dashboards",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  },
-  {
-    icon: BarChart,
-    title: "Competitor Analysis",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  },
-  {
-    icon: ShieldCheck,
-    title: "Revenue Protection",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  }
-];
+import { useTranslation } from 'react-i18next';
+import { 
+  BarChart3, 
+  LineChart, 
+  Settings, 
+  Zap, 
+  Shield, 
+  GitMerge 
+} from "lucide-react";
 
 export default function FeaturesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+  const { t } = useTranslation('common');
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-features");
-            observer.unobserve(entry.target);
+            entry.target.classList.add('animate-features');
           }
         });
       },
-      { 
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px" 
-      }
+      { threshold: 0.1 }
     );
-    
-    const featureElements = document.querySelectorAll(".feature-card");
-    featureElements.forEach((element) => {
-      observer.observe(element);
-    });
-    
+
+    if (sectionRef.current) {
+      const featureCards = sectionRef.current.querySelectorAll('.feature-card');
+      featureCards.forEach((card) => observer.observe(card));
+    }
+
     return () => {
-      featureElements.forEach((element) => {
-        observer.unobserve(element);
-      });
+      if (sectionRef.current) {
+        const featureCards = sectionRef.current.querySelectorAll('.feature-card');
+        featureCards.forEach((card) => observer.unobserve(card));
+      }
     };
   }, []);
 
+  const featureItems = [
+    { icon: BarChart3 },
+    { icon: LineChart },
+    { icon: Settings },
+    { icon: Zap },
+    { icon: Shield },
+  ];
+  
+
+  const features = featureItems.map((item, index) => ({
+    ...item,
+    title: t(`features.items.${index}.title`),
+    description: t(`features.items.${index}.description`)
+  }));
+
   return (
-    <section id="features" className="py-20 bg-gray-50" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[rgb(0,112,100)]">
-            Powerful Features to Optimize Your Pricing
+    <section id="features" className="w-full py-16 px-4 sm:py-20 bg-gray-50" ref={sectionRef}>
+      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[rgb(0,112,100)]">
+            {t('features.title')}
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
+          <p className="mt-4 text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            {t('features.description')}
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {features.map((feature, index) => (
             <div 
               key={feature.title}
               className={cn(
-                "feature-card bg-white rounded-xl shadow-sm p-8 transition-all duration-500 hover:shadow-md opacity-0 transform translate-y-8",
+                "feature-card bg-white rounded-xl shadow-sm p-6 sm:p-8 transition-all duration-500 hover:shadow-md opacity-0 transform translate-y-8",
                 index % 3 === 0 ? "delay-[0ms]" : 
                 index % 3 === 1 ? "delay-[200ms]" : "delay-[400ms]"
               )}
@@ -93,7 +81,7 @@ export default function FeaturesSection() {
               <div className="inline-flex items-center justify-center p-3 bg-teal-50 rounded-xl mb-5">
                 <feature.icon className="h-6 w-6 text-[rgb(0,112,100)]" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}

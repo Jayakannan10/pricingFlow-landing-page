@@ -3,34 +3,20 @@
 import { useState, useEffect, useRef } from "react";
 import { CheckCircle, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from 'react-i18next';
+import { howItWorksImage, howItWorksVideoSrc } from "../../app/imageSRCs/imageSrc";
 
-const steps = [
-  {
-    number: "01",
-    title: "Upload Your Data",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  },
-  {
-    number: "02",
-    title: "Analyze Market Trends",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  },
-  {
-    number: "03",
-    title: "Generate Pricing Models",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  },
-  {
-    number: "04",
-    title: "Implement & Monitor",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
-  }
-];
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
 
 export default function HowItWorksSection() {
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation('common');
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,26 +40,36 @@ export default function HowItWorksSection() {
     };
   }, []);
 
+  // Fix steps mapping to handle non-array values
+  const stepsData = t('howItWorks.steps', { returnObjects: true });
+  const steps: Step[] = Array.isArray(stepsData) 
+    ? stepsData.map((step: any) => ({
+        number: step.number || '',
+        title: step.title || '',
+        description: step.description || '',
+      })) 
+    : [];
+
   return (
-    <section id="how-it-works" className="py-20 bg-white" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[rgb(0,112,100)]">
-            How PricingFlows Works
+    <section id="how-it-works" className="py-16 px-4 sm:py-20 bg-gray-50 w-full" ref={sectionRef}>
+      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[rgb(0,112,100)]">
+            {t('howItWorks.title')}
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
+          <p className="mt-4 text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
+            {t('howItWorks.description')}
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className={cn(
             "transition-all duration-1000 transform",
             isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
           )}>
             {steps.map((step, index) => (
               <div 
-                key={step.number} 
+                key={index} 
                 className={cn(
                   "flex mb-8 transition-all duration-500",
                   isVisible ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0",
@@ -86,7 +82,7 @@ export default function HowItWorksSection() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
                 </div>
               </div>
@@ -101,7 +97,7 @@ export default function HowItWorksSection() {
               {!videoPlaying ? (
                 <>
                   <img 
-                    src="https://images.pexels.com/photos/7947961/pexels-photo-7947961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+                    src={howItWorksImage}
                     alt="Video thumbnail" 
                     className="w-full h-[400px] object-cover"
                   />
@@ -119,12 +115,12 @@ export default function HowItWorksSection() {
                   <iframe 
                     width="560" 
                     height="400" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+                    src={howItWorksVideoSrc} 
                     title="PricingFlows Demo Video"
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen
-                    className="w-full h-full"
+                    // className="w-full h-full"
                   ></iframe>
                 </div>
               )}

@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "title": "Enhance Your Pricing Page with Tooltips & Pricing Parity",
+    "description": "Improve your pricing page with interactive tooltips and pricing parity. Boost conversions with Pricing Flow. Try it now!"
+  },
+  "hero": {
+    "title": " Enhance Your Pricing Page to Convert Better",
+    "description": " Struggling to communicate value on your pricing page? Pricing Flow lets you add smart pricing tooltips using text, images, videos, GIFs, or links—so your users get the clarity they need to take action.",
+    "cta": {
+      "getStarted": "Get Started",
+      "seeHowItWorks": "See How It Works"
+    }
+  },
+  "features": {
+    "title": "Powerful Features to Improve Your Pricing Page Strategy",
+    "description": "From global pricing parity to smart content-driven tooltips, Pricing Flow gives you the tools to increase conversions and scale with confidence.",
+    "items": [
+      {
+        "title": "Interactive Pricing Tooltips",
+        "description": "Add tooltips to any part of your pricing page—explain features, offer comparisons, or share FAQs. Use videos, images, links, or simple text to improve pricing page clarity."
+      },
+      {
+        "title": "Pricing Parity for Global Users",
+        "description": "Adapt prices to match local purchasing power. Offer region-specific pricing automatically with our built-in pricing parity engine."
+      },
+      {
+        "title": "Sales Analytics (Coming Soon)",
+        "description": "Get data-driven insights into how users interact with your pricing tooltips and test which elements are driving clicks and conversions."
+      },
+      {
+        "title": "Customizable & No-Code",
+        "description": "You can fully enhance your pricing page without touching a single line of code. Easily manage tooltips and updates through our dashboard."
+      },
+      {
+        "title": "Real-Time Updates",
+        "description": "Every update you make—whether to a tooltip or parity pricing rule—goes live instantly. Stay agile and responsive to market feedback."
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Add Your Pricing Page",
+        "description": " Paste the URL of your pricing page and connect it to Pricing Flow in seconds."
+      },
+      {
+        "number": "2",
+        "title": "Add Smart Tooltips",
+        "description": " Create tooltips for each feature or pricing tier using text, videos, images, or links."
+      },
+      {
+        "number": "3",
+        "title": "Apply Parity Pricing",
+        "description": " Set country- or region-based price variants for your products or subscriptions."
+      },
+      {
+        "number": "4",
+        "title": "Go Live & Analyze",
+        "description": " Publish instantly and get ready to track how users interact (Sales Analytics coming soon)."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Our Customers Say",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.",
+    "items": [
+      {
+        "quote": "PricingFlows has transformed our pricing strategy and increased our revenue by 25%.",
+        "author": "John Smith",
+        "company": "TechCorp"
+      },
+      {
+        "quote": "The AI-powered insights have been invaluable for our business decisions.",
+        "author": "Sarah Johnson",
+        "company": "RetailPro"
+      },
+      {
+        "quote": "Easy to use and incredibly powerful. A must-have for any business.",
+        "author": "Michael Brown",
+        "company": "EcomSolutions"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.",
+    "items": [
+      {
+        "question": "What is Pricing Flow?",
+        "answer": " Pricing Flow is a SaaS tool that enhances pricing pages with interactive tooltips and enables parity pricing, so you can convert better and scale globally."
+      },
+      {
+        "question": "Do I need a developer to set this up?",
+        "answer": "Not at all! Pricing Flow is built to be no-code friendly. Anyone can add and manage tooltips using our simple dashboard."
+      },
+      {
+        "question": "Can I change tooltip content after publishing?",
+        "answer": "Yes, any changes you make to tooltip content are reflected live instantly."
+      },
+      {
+        "question": "How does parity pricing work?",
+        "answer": "You can set different pricing rules based on country or region. It’s perfect for businesses with global audiences."
+      },
+      {
+        "question": "When will sales analytics be available?",
+        "answer": "We’re currently building out our analytics feature—coming very soon! Join our waitlist to get early access."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "description": "Choose the plan that's right for your business",
+    "period": {
+      "monthly": "Monthly",
+      "yearly": "Yearly"
+    },
+    "plans": [
+      {
+        "name": "Starter",
+        "price": {
+          "monthly": "$7"
+        },
+        "description": "Description of your Basic plan",
+        "period": "/monthly",
+        "features": [
+          "Up to 3 Pricing Pages",
+          "Unlimited Tooltips",
+          "Sales Analytics (Coming Soon)"
+        ],
+        "badge": "Popular",
+        "cta": "Get Started"
+      },
+      {
+        "name": "Pro",
+        "price": {
+          "monthly": "$19"
+        },
+        "description": "Description of your Pro plan",
+        "period": "/monthly",
+        "features": [
+          "Unlimited Pricing Pages",
+          "Unlimited Tooltips",
+          "Sales Analytics (Coming Soon)"
+        ],
+        "badge": "Most Popula,r",
+        "cta": "Get Started"
+      }
+    ]
+  },
+  "footer": {
+    "company": {
+      "title": "Company",
+      "links": [
+        {
+          "text": "About Us",
+          "href": "#"
+        },
+        {
+          "text": "Careers",
+          "href": "#"
+        },
+        {
+          "text": "Contact",
+          "href": "#"
+        }
+      ]
+    },
+    "product": {
+      "title": "Product",
+      "links": [
+        {
+          "text": "Features",
+          "href": "#features"
+        },
+        {
+          "text": "Pricing",
+          "href": "#pricing"
+        },
+        {
+          "text": "FAQ",
+          "href": "#faq"
+        }
+      ]
+    },
+    "legal": {
+      "title": "Legal",
+      "links": [
+        {
+          "text": "Privacy Policy",
+          "href": "#"
+        },
+        {
+          "text": "Terms of Service",
+          "href": "#"
+        }
+      ]
+    },
+    "copyright": "PricingFlows. All rights reserved."
+  }
+} 
