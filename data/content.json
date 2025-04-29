@@ -1,0 +1,40 @@
+{
+  "blogs": [
+    {
+      "id": "blog-1",
+      "title": "Getting Started with PricingFlow",
+      "description": "A comprehensive guide to getting started with our platform",
+      "date": "2023-10-15",
+      "author": "John Smith",
+      "image": "https://ik.imagekit.io/1tudtg11f/modern-analytic.jpg?updatedAt=1745913698922",
+      "slug": "getting-started-with-pricingflow",
+      "content": [
+        {
+          "id": "section-1",
+          "title": "Introduction",
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies lacinia, nisl nisl aliquet nisl, eget aliquet nisl nisl eget nisl. Donec auctor, nisl eget ultricies lacinia, nisl nisl aliquet nisl, eget aliquet nisl nisl eget nisl."
+        },
+        {
+          "id": "section-2",
+          "title": "Key Features",
+          "content": "Nullam tincidunt, nisl eget ultricies lacinia, nisl nisl aliquet nisl, eget aliquet nisl nisl eget nisl. Donec auctor, nisl eget ultricies lacinia, nisl nisl aliquet nisl, eget aliquet nisl nisl eget nisl. Nullam tincidunt, nisl eget ultricies lacinia, nisl nisl aliquet nisl, eget aliquet nisl nisl eget nisl."
+        },
+        {
+          "id": "section-3",
+          "title": "Setting Up Your Account",
+          "content": "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Proin eget tortor risus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Curabitur aliquet quam id dui posuere blandit."
+        },
+        {
+          "id": "section-4",
+          "title": "Best Practices",
+          "content": "Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi."
+        },
+        {
+          "id": "section-5",
+          "title": "Conclusion",
+          "content": "Pellentesque in ipsum id orci porta dapibus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla quis lorem ut libero malesuada feugiat."
+        }
+      ]
+    }
+  ]
+} 
