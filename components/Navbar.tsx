@@ -7,11 +7,11 @@ import { Menu, X, Home } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const NAV_ITEMS = [
-  { name: "Features", href: "#features" },
-  { name: "How It Works", href: "#how-it-works" },
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Pricing", href: "#pricing" },
+  { name: "Features", href: "/#features" },
+  { name: "How It Works", href: "/#how-it-works" },
+  { name: "Testimonials", href: "/#testimonials" },
+  { name: "FAQ", href: "/#faq" },
+  { name: "Pricing", href: "/#pricing" },
   { name: "Blogs", href: "/blogs" },
 ];
 
