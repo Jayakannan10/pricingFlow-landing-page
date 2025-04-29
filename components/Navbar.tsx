@@ -30,6 +30,29 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /**
+   * Intercept links with hashes to smooth scroll instead of full navigation.
+   */
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    const [path, hash] = href.split('#');
+    // If there's a hash fragment
+    if (hash) {
+      // Only intercept if target path is current page or root
+      if (path === '' || path === '/' || path === pathname) {
+        e.preventDefault();
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        // close mobile menu
+        setMobileMenuOpen(false);
+      }
+    }
+  };
+
   return (
     <header 
       className={cn(
@@ -77,9 +100,11 @@ export default function Navbar() {
               {/* Desktop Navigation */}
               <nav className="hidden md:flex space-x-8">
                 {NAV_ITEMS.map((item) => (
-                  <Link 
+                  <Link
                     key={item.name}
                     href={item.href}
+                    scroll={false}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className="text-gray-600 hover:text-[rgb(0,112,100)] font-medium transition-colors"
                   >
                     {item.name}
@@ -114,11 +139,12 @@ export default function Navbar() {
           <nav className="md:hidden py-4">
             <div className="flex flex-col space-y-4">
               {NAV_ITEMS.map((item) => (
-                <Link 
+                <Link
                   key={item.name}
                   href={item.href}
+                  scroll={false}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className="text-gray-600 hover:text-[rgb(0,112,100)] font-medium transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
