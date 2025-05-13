@@ -1,112 +1,140 @@
 "use client";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import Link from "next/link";
-// Import React icons for social media
-import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
-import {contactLink, aboutUsLink, twitterLink, facebookLink, instagramLink, linkedInLink, gitHubLink} from '../../app/navLinks/navLinks'
+import {
+  FaTwitter,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+} from "react-icons/fa";
+import {
+  twitterLink,
+  facebookLink,
+  instagramLink,
+  linkedInLink,
+} from "../../app/navLinks/navLinks";
 
 interface FooterLink {
   text: string;
   href: string;
 }
 
-interface FooterSection {
-  title: string;
-  links: FooterLink[];
-}
-
 export default function FooterSection() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
 
-  // Add fallback empty arrays in case the translation returns non-array values
-  const companyLinks = (t('footer.company.links', { returnObjects: true }) || []) as FooterLink[];
-  const productLinks = (t('footer.product.links', { returnObjects: true }) || []) as FooterLink[];
-  const legalLinks = (t('footer.legal.links', { returnObjects: true }) || []) as FooterLink[];
-
-  // Make sure links are actually arrays before trying to map over them
-  const isArray = (value: any): boolean => Array.isArray(value);
+  // Get links from i18n
+  const informationLinks =
+    (t("footer.information.links", { returnObjects: true }) as FooterLink[]) ||
+    [];
+  const helpLinks =
+    (t("footer.help.links", { returnObjects: true }) as FooterLink[]) || [];
 
   const currentYear = new Date().getFullYear();
 
-  // Social media links
   const socialLinks = [
-    { icon: <FaTwitter size={20} />, href: twitterLink, label: "Twitter" },
     { icon: <FaFacebook size={20} />, href: facebookLink, label: "Facebook" },
-    { icon: <FaInstagram size={20} />, href: instagramLink, label: "Instagram" },
+    { icon: <FaTwitter size={20} />, href: twitterLink, label: "Twitter" },
     { icon: <FaLinkedin size={20} />, href: linkedInLink, label: "LinkedIn" },
-    { icon: <FaGithub size={20} />, href: gitHubLink, label: "GitHub" },
+    {
+      icon: <FaYoutube size={20} />,
+      href: "https://youtube.com",
+      label: "YouTube",
+    },
   ];
 
   return (
     <footer className="bg-gray-900 text-white w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">PricingFlows</h3>
-            <p className="text-gray-400">
-              Optimize your pricing strategy with AI-powered insights and analytics.
+        <div className="flex flex-col lg:flex-row justify-between gap-y-10 lg:gap-y-0">
+          {/* Left Columns - Info & Help */}
+          <div className="flex flex-col sm:flex-row gap-x-12">
+            {/* Information Section */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4 uppercase text-white">
+                {t("footer.information.title")}
+              </h4>
+              <ul className="space-y-2 text-gray-400">
+                {Array.isArray(informationLinks) &&
+                  informationLinks.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        href={link.href}
+                        className="hover:text-white transition-colors duration-200"
+                      >
+                        {link.text}
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+
+            {/* Help Section */}
+            <div>
+              <h4 className="text-lg font-semibold mb-4 uppercase text-white">
+                {t("footer.help.title")}
+              </h4>
+              <ul className="space-y-2 text-gray-400">
+                {Array.isArray(helpLinks) &&
+                  helpLinks.map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        href={link.href}
+                        className="hover:text-white transition-colors duration-200"
+                      >
+                        {link.text}
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Newsletter Section */}
+          <div className="max-w-md">
+            <h4 className="text-lg font-semibold mb-4 uppercase text-white">
+              {t("footer.newsletter.title")}
+            </h4>
+            <p className="text-gray-400 mb-4 text-sm">
+              {t("footer.newsletter.description")}
             </p>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">{t('footer.company.title')}</h4>
-            <ul className="space-y-2">
-              {isArray(companyLinks) && companyLinks.map((link, index) => (
-                <li key={index}>
-                  <Link href={link.href} className="text-gray-400 hover:text-white transition-colors duration-200">
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">{t('footer.product.title')}</h4>
-            <ul className="space-y-2">
-              {isArray(productLinks) && productLinks.map((link, index) => (
-                <li key={index}>
-                  <Link href={link.href} className="text-gray-400 hover:text-white transition-colors duration-200">
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">{t('footer.legal.title')}</h4>
-            <ul className="space-y-2">
-              {isArray(legalLinks) && legalLinks.map((link, index) => (
-                <li key={index}>
-                  <Link href={link.href} className="text-gray-400 hover:text-white transition-colors duration-200">
-                    {link.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className="flex flex-wrap sm:flex-nowrap gap-2">
+              <input
+                type="email"
+                placeholder={t("footer.newsletter.placeholder")}
+                className="flex-grow px-4 py-2 border border-[rgb(0,112,100)] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
+              />
+              <button className="px-4 py-2 bg-[rgb(0,112,100)] text-white rounded-md  whitespace-nowrap">
+                {t("footer.newsletter.buttonText")}
+              </button>
+            </div>
           </div>
         </div>
-        
-        {/* Social Media Icons */}
-        <div className="mt-8 flex justify-center space-x-6">
-          {socialLinks.map((social, index) => (
-            <a 
-              key={index}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
-              aria-label={social.label}
-            >
-              {social.icon}
-            </a>
-          ))}
-        </div>
-        
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; {currentYear} { t('footer.copyright')}</p>
+
+        {/* Divider */}
+        <div className="mt-10 border-t border-gray-700"></div>
+
+        {/* Bottom row */}
+        <div className="mt-6 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+          <p>
+            © {currentYear}, {t("footer.copyright")}
+          </p>
+          <div className="flex items-center space-x-4 mt-4 md:mt-0">
+            <span className="hidden sm:inline">{t("footer.followUs")}</span>
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors duration-200"
+                aria-label={social.label}
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

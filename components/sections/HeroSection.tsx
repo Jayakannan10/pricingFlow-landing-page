@@ -2,74 +2,109 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTranslation } from 'react-i18next';
-import {heroSectionImage} from '../../app/imageSRCs/imageSrc'
+import { useTranslation } from "react-i18next";
+import { heroSectionImage } from "../../app/imageSRCs/imageSrc";
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const { t } = useTranslation('common');
+  const [showVideo, setShowVideo] = useState(false); // State to toggle between image and video
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  // Checklist items
+  // const checklistItems = t("hero.checklist", { returnObjects: true }) || [
+  //   "Free and paid plans",
+  //   "Set in minutes",
+  //   "No credit card required",
+  // ];
+
   return (
-    <section className="w-full bg-gray-50 pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section className="w-full bg-gray-50 pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className={cn(
-            "transition-all duration-1000 transform",
-            isVisible 
-              ? "translate-y-0 opacity-100" 
-              : "translate-y-10 opacity-0"
-          )}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Text Section */}
+          <div
+            className={cn(
+              "transition-all duration-1000 transform",
+              isVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-10 opacity-0"
+            )}
+          >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[rgb(0,112,100)]">
-              {t('hero.title')}
+              {t("hero.title")}
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto md:mx-0">
-              {t('hero.description')}
+            <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-md">
+              {t("hero.description")}
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link 
-                href="#pricing" 
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[rgb(0,112,100)] hover:bg-[rgb(0,92,82)] transition-colors duration-200"
+            {/* Checklist */}
+            {/* <ul className="mt-6 space-y-3">
+              {Array.isArray(checklistItems) &&
+                checklistItems.map((item, index) => (
+                  <li key={index} className="flex items-center space-x-2">
+                    <CheckCircle className="h-5 w-5 text-[rgb(0,112,100)]" />
+                    <span className="text-gray-600">{item}</span>
+                  </li>
+                ))}
+            </ul> */}
+            {/* CTAs */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <Link
+                href="#pricing"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-md text-white bg-[rgb(0,112,100)] transition-colors duration-200"
               >
-                {t('hero.cta.getStarted')}
+                {t("hero.cta.getStarted")}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-              <Link 
-                href="#how-it-works" 
-                className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+              <button
+                onClick={() => setShowVideo(!showVideo)}
+                className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
               >
-                {t('hero.cta.seeHowItWorks')}
-              </Link>
+                {t("hero.cta.productVideo")}
+              </button>
             </div>
           </div>
-          <div className={cn(
-            "transition-all duration-1000 delay-300 transform",
-            isVisible 
-              ? "translate-x-0 opacity-100" 
-              : "translate-x-10 opacity-0"
-          )}>
-            <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-teal-500 to-emerald-600 opacity-30 blur rounded-lg"></div>
-              <div className="relative bg-white rounded-lg shadow-xl overflow-hidden">
-                <img 
-                  src={heroSectionImage}
-                  alt="Dashboard Preview" 
-                  className="w-full h-[300px] md:h-[400px] object-cover rounded-lg"
-                />
-              </div>
-              {/* <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-6 w-64">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="h-3 w-3 bg-green-500 rounded-full"></div>
-                  <p className="text-green-600 font-medium">+24%</p>
+
+          {/* Image/Video Section */}
+          <div
+            className={cn(
+              "transition-all duration-1000 delay-300 transform",
+              isVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-10 opacity-0"
+            )}
+          >
+            <div className="relative flex items-center justify-center">
+              {/* 3D Frame/Shadow */}
+              <div className="absolute inset-0 scale-105 bg-white rounded-2xl shadow-2xl z-0" />
+              {/* Main Image or Video */}
+              {showVideo ? (
+                <div className="w-full h-[400px] rounded-lg overflow-hidden">
+                  <iframe
+                    className="w-full h-full"
+                    src="YOUR_VIDEO_SRC_HERE" // Replace with your video source
+                    title={t("hero.title")}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
-                <h3 className="font-bold text-gray-800">Revenue Increase</h3>
-                <p className="text-sm text-gray-500 mt-1">Optimized pricing model</p> 
-              </div>*/}
+              ) : (
+                <img
+                  src={heroSectionImage}
+                  alt={t("hero.title")}
+                  className="relative w-full h-[400px] object-cover rounded-2xl shadow-2xl border-4 border-white rotate-3 z-10"
+                  style={{
+                    boxShadow:
+                      "0 16px 40px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.10)",
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>

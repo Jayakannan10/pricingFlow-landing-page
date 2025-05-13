@@ -2,26 +2,26 @@
 
 import { useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { useTranslation } from 'react-i18next';
-import { 
-  BarChart3, 
-  LineChart, 
-  Settings, 
-  Zap, 
-  Shield, 
-  GitMerge 
+import { useTranslation } from "react-i18next";
+import {
+  BarChart3,
+  LineChart,
+  Settings,
+  Zap,
+  Shield,
+  GitMerge,
 } from "lucide-react";
 
 export default function FeaturesSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { t } = useTranslation('common');
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { t } = useTranslation("common");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-features');
+            entry.target.classList.add("animate-features");
           }
         });
       },
@@ -29,69 +29,108 @@ export default function FeaturesSection() {
     );
 
     if (sectionRef.current) {
-      const featureCards = sectionRef.current.querySelectorAll('.feature-card');
-      featureCards.forEach((card) => observer.observe(card));
+      const featureCards = sectionRef.current.querySelectorAll(".feature-card");
+      featureCards.forEach((card: Element) => observer.observe(card));
     }
 
     return () => {
       if (sectionRef.current) {
-        const featureCards = sectionRef.current.querySelectorAll('.feature-card');
-        featureCards.forEach((card) => observer.unobserve(card));
+        const featureCards =
+          sectionRef.current.querySelectorAll(".feature-card");
+        featureCards.forEach((card: Element) => observer.unobserve(card));
       }
     };
   }, []);
 
-  const featureItems = [
-    { icon: BarChart3 },
-    { icon: LineChart },
-    { icon: Settings },
-    { icon: Zap },
-    { icon: Shield },
-  ];
-  
+  // Feature icons mapping
+  const featureIcons = {
+    BarChart3: BarChart3,
+    LineChart: LineChart,
+    Settings: Settings,
+    Zap: Zap,
+    Shield: Shield,
+    GitMerge: GitMerge,
+  };
 
-  const features = featureItems.map((item, index) => ({
-    ...item,
-    title: t(`features.items.${index}.title`),
-    description: t(`features.items.${index}.description`)
-  }));
+  // Get features from i18n
+  const featuresData = t("features.items", { returnObjects: true }) || [];
+
+  // Map icons to features data
+  const features = Array.isArray(featuresData)
+    ? featuresData.map((feature, index) => {
+        const iconKey =
+          Object.keys(featureIcons)[index % Object.keys(featureIcons).length];
+        return {
+          icon: featureIcons[iconKey as keyof typeof featureIcons],
+          color: [
+            "text-blue-600",
+            "text-orange-600",
+            "text-green-600",
+            "text-purple-600",
+            "text-gray-600",
+            "text-yellow-500",
+          ][index % 6],
+          bgColor: [
+            "text-blue-100",
+            "text-orange-100",
+            "text-green-100",
+            "text-purple-100",
+            "text-gray-100",
+            "text-yellow-100",
+          ][index % 6],
+          title: feature.title,
+          description: feature.description,
+        };
+      })
+    : [];
 
   return (
-    <section id="features" className="w-full py-16 px-4 sm:py-20 bg-gray-50" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[rgb(0,112,100)]">
-            {t('features.title')}
+    <section className="py-10 bg-white sm:py-16 lg:py-24" ref={sectionRef}>
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[rgb(0,112,100)]">
+            {t("features.title")}
           </h2>
-          <p className="mt-4 text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            {t('features.description')}
+          <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+            {t("features.description")}
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
+        <div className="grid grid-cols-1 gap-12 text-center sm:grid-cols-2 md:grid-cols-3 lg:gap-y-16">
           {features.map((feature, index) => (
-            <div 
-              key={feature.title}
-              className={cn(
-                "feature-card bg-white rounded-xl shadow-sm p-6 sm:p-8 transition-all duration-500 hover:shadow-md opacity-0 transform translate-y-8",
-                index % 3 === 0 ? "delay-[0ms]" : 
-                index % 3 === 1 ? "delay-[200ms]" : "delay-[400ms]"
-              )}
+            <div
+              key={index}
+              className="feature-card opacity-0 transform translate-y-8 transition-all duration-500"
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="inline-flex items-center justify-center p-3 bg-teal-50 rounded-xl mb-5">
-                <feature.icon className="h-6 w-6 text-[rgb(0,112,100)]" />
+              <div className="relative flex items-center justify-center mx-auto">
+                <svg
+                  className={feature.bgColor}
+                  width="72"
+                  height="75"
+                  viewBox="0 0 72 75"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M63.6911 28.8569C68.0911 48.8121 74.6037 61.2674 53.2349 65.9792C31.8661 70.6909 11.6224 61.2632 7.22232 41.308C2.82229 21.3528 3.6607 12.3967 25.0295 7.68503C46.3982 2.97331 59.2911 8.90171 63.6911 28.8569Z" />
+                </svg>
+                <feature.icon className={`absolute ${feature.color} w-9 h-9`} />
               </div>
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <h3 className="mt-8 text-lg font-semibold text-black">
+                {feature.title}
+              </h3>
+              <p className="mt-4 text-base text-gray-600">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
       </div>
-      
+
       <style jsx global>{`
         .animate-features {
-          transform: translateY(0);
-          opacity: 1;
+          transform: translateY(0) !important;
+          opacity: 1 !important;
         }
       `}</style>
     </section>

@@ -8,8 +8,36 @@
     "description": " Struggling to communicate value on your pricing page? Pricing Flow lets you add smart pricing tooltips using text, images, videos, GIFs, or links—so your users get the clarity they need to take action.",
     "cta": {
       "getStarted": "Get Started",
-      "seeHowItWorks": "See How It Works"
+      "seeHowItWorks": "See How It Works",
+      "productVideo": "Product Video"
     }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Add Your Pricing Page",
+        "description": " Paste the URL of your pricing page and connect it to Pricing Flow in seconds."
+      },
+      {
+        "number": "2",
+        "title": "Add Smart Tooltips",
+        "description": " Create tooltips for each feature or pricing tier using text, videos, images, or links."
+      },
+      {
+        "number": "3",
+        "title": "Apply Parity Pricing",
+        "description": " Set country- or region-based price variants for your products or subscriptions."
+      },
+      {
+        "number": "4",
+        "title": "Go Live & Analyze",
+        "description": " Publish instantly and get ready to track how users interact (Sales Analytics coming soon)."
+      }
+    ],
+    "videoCaption": "See how PricingFlows works in just 2 minutes."
   },
   "features": {
     "title": "Powerful Features to Improve Your Pricing Page Strategy",
@@ -37,32 +65,7 @@
       }
     ]
   },
-  "howItWorks": {
-    "title": "How It Works",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.",
-    "steps": [
-      {
-        "number": "1",
-        "title": "Add Your Pricing Page",
-        "description": " Paste the URL of your pricing page and connect it to Pricing Flow in seconds."
-      },
-      {
-        "number": "2",
-        "title": "Add Smart Tooltips",
-        "description": " Create tooltips for each feature or pricing tier using text, videos, images, or links."
-      },
-      {
-        "number": "3",
-        "title": "Apply Parity Pricing",
-        "description": " Set country- or region-based price variants for your products or subscriptions."
-      },
-      {
-        "number": "4",
-        "title": "Go Live & Analyze",
-        "description": " Publish instantly and get ready to track how users interact (Sales Analytics coming soon)."
-      }
-    ]
-  },
+
   "testimonials": {
     "title": "What Our Customers Say",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.",
@@ -102,13 +105,15 @@
       },
       {
         "question": "How does parity pricing work?",
-        "answer": "You can set different pricing rules based on country or region. It’s perfect for businesses with global audiences."
+        "answer": "You can set different pricing rules based on country or region. It's perfect for businesses with global audiences."
       },
       {
         "question": "When will sales analytics be available?",
-        "answer": "We’re currently building out our analytics feature—coming very soon! Join our waitlist to get early access."
+        "answer": "We're currently building out our analytics feature—coming very soon! Join our waitlist to get early access."
       }
-    ]
+    ],
+    "contactSupport": "Still have questions? Contact our support team.",
+    "contactCTA": "Contact Support"
   },
   "pricing": {
     "title": "Simple, Transparent Pricing",
@@ -151,53 +156,29 @@
     ]
   },
   "footer": {
-    "company": {
-      "title": "Company",
+    "information": {
+      "title": "Information",
       "links": [
-        {
-          "text": "About Us",
-          "href": "#"
-        },
-        {
-          "text": "Careers",
-          "href": "#"
-        },
-        {
-          "text": "Contact",
-          "href": "#"
-        }
+        { "text": "About", "href": "/about" },
+        { "text": "Services", "href": "/services" },
+        { "text": "Works", "href": "/works" }
       ]
     },
-    "product": {
-      "title": "Product",
+    "help": {
+      "title": "Help",
       "links": [
-        {
-          "text": "Features",
-          "href": "#features"
-        },
-        {
-          "text": "Pricing",
-          "href": "#pricing"
-        },
-        {
-          "text": "FAQ",
-          "href": "#faq"
-        }
+        { "text": "Customer Support", "href": "/contact" },
+        { "text": "Privacy Policy", "href": "/privacy-policy" },
+        { "text": "Terms & Conditions", "href": "/terms" }
       ]
     },
-    "legal": {
-      "title": "Legal",
-      "links": [
-        {
-          "text": "Privacy Policy",
-          "href": "#"
-        },
-        {
-          "text": "Terms of Service",
-          "href": "#"
-        }
-      ]
+    "newsletter": {
+      "title": "Subscribe to Newsletter",
+      "description": "Get the latest updates and news directly in your inbox.",
+      "placeholder": "Enter email address",
+      "buttonText": "Sign Up"
     },
-    "copyright": "PricingFlows. All rights reserved."
+    "copyright": "All Rights Reserved by Mavencart",
+    "followUs": "Follow us on:"
   }
-} 
+}

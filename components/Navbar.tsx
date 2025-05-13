@@ -7,8 +7,8 @@ import { Menu, X, Home } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const NAV_ITEMS = [
-  { name: "Features", href: "/#features" },
   { name: "How It Works", href: "/#how-it-works" },
+  { name: "Features", href: "/#features" },
   { name: "Testimonials", href: "/#testimonials" },
   { name: "FAQ", href: "/#faq" },
   { name: "Pricing", href: "/#pricing" },
@@ -25,7 +25,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -37,15 +37,15 @@ export default function Navbar() {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    const [path, hash] = href.split('#');
+    const [path, hash] = href.split("#");
     // If there's a hash fragment
     if (hash) {
       // Only intercept if target path is current page or root
-      if (path === '' || path === '/' || path === pathname) {
+      if (path === "" || path === "/" || path === pathname) {
         e.preventDefault();
         const element = document.getElementById(hash);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          element.scrollIntoView({ behavior: "smooth" });
         }
         // close mobile menu
         setMobileMenuOpen(false);
@@ -54,7 +54,7 @@ export default function Navbar() {
   };
 
   return (
-    <header 
+    <header
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
         isScrolled || isBlogsPage ? "bg-white shadow-sm" : "bg-transparent"
@@ -64,7 +64,11 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-[rgb(0,112,100)]">
-              <img src='https://ik.imagekit.io/1tudtg11f/logo.webp?updatedAt=1745420385967' alt='pricingFlow image' width='200' />
+              <img
+                src="https://ik.imagekit.io/1tudtg11f/logo.webp?updatedAt=1745420385967"
+                alt="pricingFlow image"
+                width="200"
+              />
             </Link>
           </div>
 
@@ -72,22 +76,22 @@ export default function Navbar() {
           {isBlogsPage ? (
             <>
               <div className="flex-1 flex justify-center items-center space-x-6">
-                <Link 
-                  href="/" 
+                <Link
+                  href="/"
                   className="flex items-center gap-2 text-gray-600 hover:text-[rgb(0,112,100)] font-medium transition-colors"
                 >
                   <Home size={20} />
                   <span className="hidden md:inline">Home</span>
                 </Link>
-                <Link 
-                  href="/blogs" 
+                <Link
+                  href="/blogs"
                   className="text-gray-600 hover:text-[rgb(0,112,100)] font-medium transition-colors"
                 >
                   Blogs
                 </Link>
               </div>
-              <Link 
-                href="http://localhost:3001/auth/sign-in" 
+              <Link
+                href="http://localhost:3001/auth/sign-in"
                 className="px-4 py-2 bg-[rgb(0,112,100)] text-white rounded-md font-medium hover:bg-[rgb(0,92,82)] transition-colors duration-200"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -113,8 +117,8 @@ export default function Navbar() {
               </nav>
 
               <div className="hidden md:flex items-center space-x-4">
-                <Link 
-                  href="http://localhost:3001/auth/sign-in" 
+                <Link
+                  href="http://localhost:3001/auth/sign-in"
                   className="px-4 py-2 bg-[rgb(0,112,100)] text-white rounded-md font-medium hover:bg-[rgb(0,92,82)] transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -124,7 +128,7 @@ export default function Navbar() {
               </div>
 
               {/* Mobile menu button */}
-              <button 
+              <button
                 className="md:hidden text-gray-500"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
@@ -149,8 +153,8 @@ export default function Navbar() {
                   {item.name}
                 </Link>
               ))}
-              <Link 
-                href="http://localhost:3001/auth/sign-in" 
+              <Link
+                href="http://localhost:3001/auth/sign-in"
                 className="px-4 py-2 text-center bg-[rgb(0,112,100)] text-white rounded-md font-medium"
                 target="_blank"
                 rel="noopener noreferrer"
