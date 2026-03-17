@@ -102,6 +102,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })
           }}
         />
+        <Script
+          src="http://localhost:3000/maintainai-logger.js"
+          data-client-id="pricing-flow-landing"
+          strategy="beforeInteractive"
+        />
       </head>
       <body className={inter.className}>
         {/* Wrap your app with the I18nProvider */}
