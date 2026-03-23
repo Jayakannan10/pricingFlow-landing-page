@@ -14,3 +14,11 @@ export const checkApiLink = () => {
   const randomResponse = responses[Math.floor(Math.random() * responses.length)];
   return randomResponse;
 };
+export const randomApiTestLink = () => {
+  const responses = [
+    { status: 'success', message: 'API test successful' },
+    { status: 'failure', message: 'API test failed' }
+  ];
+  const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+  return randomResponse;
+};
