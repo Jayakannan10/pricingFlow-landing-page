@@ -224,6 +224,7 @@ import { useTranslation } from "react-i18next";
 export default function PricingSection() {
   const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
+  const [apiResult, setApiResult] = useState<string | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const plans = t("pricing.plans", { returnObjects: true }) as Array<any>;
@@ -322,6 +323,49 @@ export default function PricingSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 sm:mt-16 text-center">
+          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">
+            Test success/failure flows
+          </h3>
+          <p className="mt-2 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+            Use these CTAs to hit the two endpoints and confirm integration.
+          </p>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+            <button
+              type="button"
+              className="inline-flex justify-center rounded-md bg-[rgb(0,112,100)] px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-[rgb(0,92,82)] transition-colors"
+              onClick={async () => {
+                setApiResult(null);
+                const res = await fetch("/api/success");
+                const body = await res.json().catch(() => ({}));
+                setApiResult(`Success: ${res.status} ${JSON.stringify(body)}`);
+              }}
+            >
+              Trigger success API
+            </button>
+
+            <button
+              type="button"
+              className="inline-flex justify-center rounded-md bg-gray-900 px-6 py-3 text-sm font-medium text-white shadow-sm hover:bg-black transition-colors"
+              onClick={async () => {
+                setApiResult(null);
+                const res = await fetch("/api/failure");
+                const body = await res.json().catch(() => ({}));
+                setApiResult(`Failure: ${res.status} ${JSON.stringify(body)}`);
+              }}
+            >
+              Trigger failure API
+            </button>
+          </div>
+
+          {apiResult && (
+            <div className="mt-4 text-xs sm:text-sm text-gray-700">
+              <span className="font-mono break-words">{apiResult}</span>
+            </div>
+          )}
         </div>
       </div>
     </section>
