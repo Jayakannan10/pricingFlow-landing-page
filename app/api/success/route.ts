@@ -48,6 +48,31 @@ export async function GET(request: Request) {
     return NextResponse.json(failurePayload, { status: 400 });
   }
 
+  if (outcome === "third-cta") {
+    await reportToMaintainAI({
+      name: "Third CTA",
+      url,
+      method: "GET",
+      status: "up",
+      status_code: 200,
+      response_time_ms,
+    });
+    return NextResponse.json(successPayload, { status: 200 });
+  }
+
+  if (outcome === "failure-cta") {
+    await reportToMaintainAI({
+      name: "Failure",
+      url,
+      method: "GET",
+      status: "down",
+      status_code: 400,
+      response_time_ms,
+      error: "failure",
+    });
+    return NextResponse.json(failurePayload, { status: 400 });
+  }
+
   await reportToMaintainAI({
     name: "Test API",
     url,
