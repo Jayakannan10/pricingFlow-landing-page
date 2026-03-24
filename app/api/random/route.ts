@@ -45,9 +45,19 @@ export async function GET(request: Request) {
       response_time_ms,
     });
     return NextResponse.json(successPayload, { status: 200 });
+  } else if (random < 0.75) {
+    await reportToMaintainAI({
+      name: "Third CTA",
+      url,
+      method: "GET",
+      status: "up",
+      status_code: 200,
+      response_time_ms,
+    });
+    return NextResponse.json(successPayload, { status: 200 });
   } else {
     await reportToMaintainAI({
-      name: "Random API",
+      name: "Failure",
       url,
       method: "GET",
       status: "down",
