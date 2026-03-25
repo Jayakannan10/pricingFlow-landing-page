@@ -58,3 +58,17 @@ export async function GET(request: Request) {
   });
   return NextResponse.json(successPayload, { status: 200 });
 }
+
+export async function POST(request: Request) {
+  const payload = await request.json();
+  // Process the payload and send it to the app via webhook
+  await reportToMaintainAI({
+    name: "Test API",
+    url: request.url,
+    method: "POST",
+    status: "up",
+    status_code: 200,
+    response_time_ms: 0,
+  });
+  return NextResponse.json({ ok: true, result: "success" }, { status: 200 });
+}
