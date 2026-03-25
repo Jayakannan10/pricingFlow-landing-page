@@ -84,6 +84,14 @@ export default function FeaturesSection() {
       })
     : [];
 
+  const successFeature = {
+    icon: Zap,
+    color: "text-green-600",
+    bgColor: "text-green-100",
+    title: "API Testing Success",
+    description: "Send success details to the app via webhook",
+  };
+
   return (
     <section className="py-10 bg-white sm:py-16 lg:py-24" ref={sectionRef}>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -124,6 +132,44 @@ export default function FeaturesSection() {
               </p>
             </div>
           ))}
+          <div
+            className="feature-card opacity-0 transform translate-y-8 transition-all duration-500"
+            style={{ transitionDelay: `${features.length * 100}ms` }}
+          >
+            <div className="relative flex items-center justify-center mx-auto">
+              <svg
+                className={successFeature.bgColor}
+                width="72"
+                height="75"
+                viewBox="0 0 72 75"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M63.6911 28.8569C68.0911 48.8121 74.6037 61.2674 53.2349 65.9792C31.8661 70.6909 11.6224 61.2632 7.22232 41.308C2.82229 21.3528 3.6607 12.3967 25.0295 7.68503C46.3982 2.97331 59.2911 8.90171 63.6911 28.8569Z" />
+              </svg>
+              <successFeature.icon className={`absolute ${successFeature.color} w-9 h-9`} />
+            </div>
+            <h3 className="mt-8 text-lg font-semibold text-black">
+              {successFeature.title}
+            </h3>
+            <p className="mt-4 text-base text-gray-600">
+              {successFeature.description}
+            </p>
+            <button
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => {
+                // Send success details to the app via webhook
+                fetch("/api/success", {
+                  method: "GET",
+                  params: {
+                    outcome: "success",
+                  },
+                });
+              }}
+            >
+              Send Success Details
+            </button>
+          </div>
         </div>
       </div>
 
